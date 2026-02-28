@@ -1,0 +1,26 @@
+{
+  "name": "blur_images",
+  "version": "1.0.0",
+  "description": "A basic Manifest V3 Chrome extension scaffold.",
+  "main": "background.js",
+  "scripts": {
+    "build:css": "tailwindcss -i ./styles/input.css -o ./styles/output.css",
+    "watch:css": "tailwindcss -i ./styles/input.css -o ./styles/output.css --watch",
+    "build:background": "esbuild background.js --bundle --platform=browser --format=esm --outfile=background.bundle.js",
+    "build": "npm run build:css && npm run build:background",
+    "zip": "npm run build && ./zip.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.27",
+    "esbuild": "^0.21.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.19"
+  },
+  "dependencies": {
+    "@elfedali/moroccan-data": "^1.0.0"
+  }
+}
