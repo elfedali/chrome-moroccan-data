@@ -1,10 +1,12 @@
 # chrome-moroccan-data
 
-Chrome Extension (Manifest V3) that fills web forms with **fake Moroccan test data**.
+Chrome Extension (Manifest V3) that can fill web forms with **fake Moroccan test data**, and provides a simple **quick login** helper (saved users → click to fill email/password).
 
 ## Features
 
-- ✨ Scans web forms and auto-fills with realistic Moroccan data
+- 👤 Save multiple users (name / email / password) in the Options page
+- ⚡ In the popup, click a user to autofill Email + Password on the current tab
+- ✨ (Optional) Scans web forms and auto-fills with realistic Moroccan data
 - 🎯 Smart field detection: `email`, `phone`, `name`, `address`, etc.
 - 🇲🇦 Powered by [@elfedali/moroccan-data](https://npmjs.com/package/@elfedali/moroccan-data)
 - 💅 Modern UI built with **Tailwind CSS**
@@ -52,10 +54,15 @@ npm run watch:css
 
 ## Usage
 
-1. Navigate to any website with a form
-2. Click the **extension icon** in your toolbar
-3. Click **Fill form with fake data**
-4. ✅ All detected input fields are populated with realistic Moroccan test data
+### Quick login (saved users)
+
+1. Open the extension **Options** page
+2. Add your users (example: SuperAdmin / Admin / User)
+3. Navigate to a website login page
+4. Click the extension icon and click a user
+5. ✅ The page’s email + password inputs are populated
+
+> Note: credentials are stored in `chrome.storage.local` (plain text).
 
 ---
 
@@ -107,7 +114,7 @@ npm run zip
 
 - The extension generates **fake/test data only** — it does not validate official identifiers
 - All data generation happens locally (no network requests)
-- Uses `chrome.storage.local` for persistent user settings
+- Uses `chrome.storage.local` for persistent settings
 - Seeded randomization available via `createMoroccanFaker({ seed })`
 
 ---

@@ -1,7 +1,7 @@
 {
-  "name": "blur_images",
+  "name": "chrome-moroccan-data-extension",
   "version": "1.0.0",
-  "description": "A basic Manifest V3 Chrome extension scaffold.",
+  "description": "A Chrome extension that provides Moroccan data such as cities, regions, and postal codes.",
   "main": "background.js",
   "scripts": {
     "build:css": "tailwindcss -i ./styles/input.css -o ./styles/output.css",
@@ -11,8 +11,8 @@
     "zip": "npm run build && ./zip.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["chrome", "extension", "moroccan", "data"],
+  "author": "Abdessamad El Fedali",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^10.4.27",

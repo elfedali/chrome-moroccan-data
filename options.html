@@ -12,27 +12,84 @@
     <main class="mx-auto max-w-2xl p-6">
         <header class="mb-6">
             <h1 class="text-xl font-semibold">Options</h1>
-            <p class="mt-1 text-sm text-slate-600">Stored in <code
+            <p class="mt-1 text-sm text-slate-600">Users are stored in <code
                     class="rounded bg-slate-200 px-1 py-0.5">chrome.storage.local</code>.</p>
         </header>
 
         <section class="rounded-xl border border-slate-200 bg-white p-4">
-            <label for="note" class="block text-sm font-medium text-slate-700">Saved note</label>
-            <textarea id="note" rows="4"
-                class="mt-2 w-full rounded-lg border border-slate-300 p-2 text-sm outline-none focus:border-slate-400"
-                placeholder="Type something…"></textarea>
+            <h2 class="text-sm font-semibold text-slate-900">Default password</h2>
+            <p class="mt-1 text-xs text-slate-600">Used to prefill the password when adding users.</p>
 
-            <div class="mt-3 flex gap-2">
-                <button id="saveBtn" type="button"
-                    class="inline-flex items-center justify-center rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700">
+            <div class="mt-3 flex items-end gap-2">
+                <div class="flex-1">
+                    <label for="defaultPassword" class="block text-sm font-medium text-slate-700">Default password</label>
+                    <div class="relative mt-1">
+                        <input id="defaultPassword" type="password" autocomplete="off"
+                            class="w-full rounded-lg border border-slate-300 p-2 pr-10 text-sm outline-none focus:border-slate-400"
+                            placeholder="Pa$$w0rd!" />
+                        <button id="toggleDefaultPassword" type="button"
+                            class="absolute right-2 top-1/2 -translate-y-1/2 rounded-md border border-slate-300 bg-white p-1.5 text-slate-700 hover:bg-slate-50"
+                            aria-label="Show default password"></button>
+                    </div>
+                </div>
+
+                <button id="saveDefaultPasswordBtn" type="button"
+                    class="h-[38px] shrink-0 rounded-lg bg-slate-900 px-3 text-sm font-medium text-white hover:bg-slate-800">
                     Save
                 </button>
-                <button id="clearBtn" type="button"
-                    class="inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50">
-                    Clear
-                </button>
-                <span id="status" class="ml-auto self-center text-sm text-slate-600"></span>
             </div>
+
+            <hr class="my-4 border-slate-200" />
+
+            <h2 class="text-sm font-semibold text-slate-900">Add / Update user</h2>
+            <p class="mt-1 text-xs text-slate-600">Add multiple users like <span class="font-medium">SuperAdmin</span>, <span
+                    class="font-medium">Admin</span>, <span class="font-medium">User</span>. If the same name exists, it will be updated.</p>
+                <p id="editStatus" class="mt-1 text-xs text-slate-600"></p>
+
+            <form id="userForm" class="mt-4 grid grid-cols-1 gap-3">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-slate-700">Name</label>
+                    <input id="name" autocomplete="off"
+                        class="mt-1 w-full rounded-lg border border-slate-300 p-2 text-sm outline-none focus:border-slate-400"
+                        placeholder="SuperAdmin" />
+                </div>
+
+                <div>
+                    <label for="email" class="block text-sm font-medium text-slate-700">Email</label>
+                    <input id="email" type="email" autocomplete="off"
+                        class="mt-1 w-full rounded-lg border border-slate-300 p-2 text-sm outline-none focus:border-slate-400"
+                        placeholder="superadmin@example.com" />
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-slate-700">Password</label>
+                    <div class="relative mt-1">
+                        <input id="password" type="password" autocomplete="off"
+                            class="w-full rounded-lg border border-slate-300 p-2 pr-10 text-sm outline-none focus:border-slate-400"
+                            placeholder="••••••••" />
+                        <button id="togglePassword" type="button"
+                            class="absolute right-2 top-1/2 -translate-y-1/2 rounded-md border border-slate-300 bg-white p-1.5 text-slate-700 hover:bg-slate-50"
+                            aria-label="Show password"></button>
+                    </div>
+                </div>
+
+                <div class="flex gap-2">
+                    <button id="addUserBtn" type="submit"
+                        class="inline-flex items-center justify-center rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700">
+                        Save user
+                    </button>
+                    <button id="resetBtn" type="button"
+                        class="inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-50">
+                        Reset form
+                    </button>
+                    <span id="status" class="ml-auto self-center text-sm text-slate-600"></span>
+                </div>
+            </form>
+        </section>
+
+        <section class="mt-4 rounded-xl border border-slate-200 bg-white p-4">
+            <h2 class="text-sm font-semibold text-slate-900">Saved users</h2>
+            <ul id="usersList" class="mt-3 space-y-2"></ul>
         </section>
     </main>
 
