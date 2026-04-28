@@ -144,6 +144,42 @@
     };
   };
 
+  // Auto-fill password inputs on page load
+  async function autoFillPasswordInputs() {
+    const passwordSelectors = [
+      'input[type="password"]',
+      'input[autocomplete="current-password"]',
+      'input[name*="pass" i]',
+      'input[id*="pass" i]'
+    ];
+
+    // Try to find a password input
+    const passwordEl = pickFirst(passwordSelectors);
+    
+    if (passwordEl && isUsableInput(passwordEl)) {
+      try {
+        // Retrieve the default password from storage
+        const storage = await chrome.storage.local.get({
+          defaultPassword: "Pa$$w0rd!"
+        });
+        
+        const defaultPassword = storage.defaultPassword;
+        if (defaultPassword) {
+          fillValue(passwordEl, defaultPassword);
+        }
+      } catch (err) {
+        console.error("Error auto-filling password:", err);
+      }
+    }
+  }
+
+  // Auto-fill on page load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", autoFillPasswordInputs);
+  } else {
+    autoFillPasswordInputs();
+  }
+
   // Listen for messages from popup
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === "FILL_FORM_REQUEST") {
